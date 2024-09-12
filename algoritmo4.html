@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>algoritmo 4</title>
+    <script>
+        function fibonacci() {
+            var limite = parseInt(document.getElementById("campoFibonacci").value);
+            let serie = [0, 1];
+            var resultado = "Fibonacci = 0"; // Comenzamos con los dos primeros números de la serie
+
+            if (!isNaN(limite) && limite >= 0) {
+                while (true) {
+                    let siguienteNum = serie[serie.length - 1] + serie[serie.length - 2];
+                    if (siguienteNum > limite) {
+                        break;
+                    }
+                    serie.push(siguienteNum);
+                    resultado += `, ${siguienteNum}`;
+                }
+                document.getElementById("resultado").innerHTML = resultado;
+            } else {
+                document.getElementById("resultado").innerHTML = `Existe un error en el tipo de dato o el número es negativo`;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <p><a href="index.html">Regresar al menú</a></p>
+
+    <p>Serie o Sucesión de Fibonacci, solicite el límite al usuario. <br>
+        Fibonacci = 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987</p> <br>
+    <img src="./img/fibonacci.png" alt="">
+    <p>Escriba el limite al que quiere que llegue la serie de fibonacci: </p>
+    <input type="text" value="1000" id="campoFibonacci">
+    <input type="button" value="Generar" onclick="fibonacci()">
+    <p id="resultado">Fibonacci=</p>
+</body>
+
+</html>

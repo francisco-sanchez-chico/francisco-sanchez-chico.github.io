@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>algoritmo 5</title>
+    <script>
+        function calcularPi() {
+            var iteraciones = parseInt(document.getElementById("campoIteraciones").value);
+            var pi = 0;
+            var signo = 1;
+            var procedimiento = "π = ";
+            if (!isNaN(document.getElementById("campoIteraciones").value) && iteraciones > 0) {
+                for (let i = 0; i < iteraciones; i++) {
+                    let denominador = 2 * i + 1;
+                    let termino = `${signo === 1 ? "" : "-"}1/${denominador}`;
+
+                    if (i === 0) {
+                        procedimiento += `4 (${termino}`;
+                    } else {
+                        procedimiento += ` ${termino}`;
+                    }
+
+                    if (i < iteraciones - 1) {
+                        procedimiento += (i % 2 === 0 ? " + " : " - ");
+                    }
+
+                    pi += signo * (4 / denominador);
+                    signo *= -1; // Alternar el signo
+                }
+                procedimiento += ")";
+                document.getElementById("procedimiento").innerHTML = procedimiento;
+                document.getElementById("resultado").innerHTML = pi;
+            } else {
+                document.getElementById("resultado").innerHTML = `Existe un error en el tipo de dato, el número es negativo y/o tiene que ser mayor a 0`;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <p><a href="index.html">Regresar al menú</a></p>
+
+    <p>Calcule el valor de π a partir de la siguiente serie infinita (Metodo de Gottfried Leibniz): <br>
+        π = 4 (1/1 -1 /3 + 1/5 -1/7 + 1/9 – 1/11 +…………) <br><br>
+        Hasta obtener el valor de 3.14159, tarda 142500 iteraciones más de 5 minutos, se cambia: <br>
+        Numero de iteraciones: 5 <br>
+        π = 4 (1/1 -1 /3 + 1/5 -1/7 + 1/9) <br>
+        π = ¿? <br><br>
+        Numero de iteraciones: 14 <br>
+        π = 4 (1/1 -1/3 + 1/5 -1/7 + 1/9 – 1/11 + 1/13 – 1/15 + 1/17 – 1/19 + 1/21 – 1/23 + 1/25 – <br>
+        1/27) <br>
+        π = ¿? <br><br>
+        Numero de iteraciones: 1 <br>
+        π = 4 (1/1) <br>
+        π = 4 <br><br>
+        Numero de iteraciones: -1 <br>
+        Error</p> <br>
+
+    <p>Número de iteraciones: </p> <input type="text" value="10" id="campoIteraciones">
+    <input type="button" value="Aproximar" onclick="calcularPi()">
+
+    <p id="procedimiento"></p>
+    <p id="resultado">π =</p>
+    
+
+
+</body>
+
+</html>
